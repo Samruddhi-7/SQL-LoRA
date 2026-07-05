@@ -1,0 +1,1362 @@
+{
+  "aggregate": {
+    "model": "llama-3.1-8b-instant",
+    "total_examples": 150,
+    "executable": 120,
+    "correct": 107,
+    "execution_accuracy": 0.7133,
+    "executable_rate": 0.8
+  },
+  "per_example": [
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(*) FROM head WHERE age > 56",
+      "gold_sql": "SELECT COUNT(*) FROM head WHERE age > 56",
+      "error_message": null,
+      "question": "How many heads of the departments are older than 56 ?",
+      "context": "CREATE TABLE head (age INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT name, born_state, age FROM head ORDER BY age",
+      "gold_sql": "SELECT name, born_state, age FROM head ORDER BY age",
+      "error_message": null,
+      "question": "List the name, born state and age of the heads of departments ordered by age.",
+      "context": "CREATE TABLE head (name VARCHAR, born_state VARCHAR, age VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT creation, name, budget_in_billions FROM department",
+      "gold_sql": "SELECT creation, name, budget_in_billions FROM department",
+      "error_message": null,
+      "question": "List the creation year, name and budget of each department.",
+      "context": "CREATE TABLE department (creation VARCHAR, name VARCHAR, budget_in_billions VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT MAX(budget_in_billions) AS max_budget, MIN(budget_in_billions) AS min_budget FROM department",
+      "gold_sql": "SELECT MAX(budget_in_billions), MIN(budget_in_billions) FROM department",
+      "error_message": null,
+      "question": "What are the maximum and minimum budget of the departments?",
+      "context": "CREATE TABLE department (budget_in_billions INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT AVG(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15",
+      "gold_sql": "SELECT AVG(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15",
+      "error_message": null,
+      "question": "What is the average number of employees of the departments whose rank is between 10 and 15?",
+      "context": "CREATE TABLE department (num_employees INTEGER, ranking INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT name FROM head WHERE born_state != 'California';",
+      "gold_sql": "SELECT name FROM head WHERE born_state <> 'California'",
+      "error_message": null,
+      "question": "What are the names of the heads who are born outside the California state?",
+      "context": "CREATE TABLE head (name VARCHAR, born_state VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT COUNT(temporary_acting) FROM management",
+      "gold_sql": "SELECT COUNT(DISTINCT temporary_acting) FROM management",
+      "error_message": null,
+      "question": "How many acting statuses are there?",
+      "context": "CREATE TABLE management (temporary_acting VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT head_id, name FROM head WHERE name LIKE '%Ha%';",
+      "gold_sql": "SELECT head_id, name FROM head WHERE name LIKE '%Ha%'",
+      "error_message": null,
+      "question": "Which head's name has the substring 'Ha'? List the id and name.",
+      "context": "CREATE TABLE head (head_id VARCHAR, name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(Id) FROM farm",
+      "gold_sql": "SELECT COUNT(*) FROM farm",
+      "error_message": null,
+      "question": "How many farms are there?",
+      "context": "CREATE TABLE farm (Id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Total_Horses FROM farm ORDER BY Total_Horses ASC",
+      "gold_sql": "SELECT Total_Horses FROM farm ORDER BY Total_Horses",
+      "error_message": null,
+      "question": "List the total number of horses on farms in ascending order.",
+      "context": "CREATE TABLE farm (Total_Horses VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Hosts FROM farm_competition WHERE Theme != 'Aliens'",
+      "gold_sql": "SELECT Hosts FROM farm_competition WHERE Theme <> 'Aliens'",
+      "error_message": null,
+      "question": "What are the hosts of competitions whose theme is not \"Aliens\"?",
+      "context": "CREATE TABLE farm_competition (Hosts VARCHAR, Theme VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Theme FROM farm_competition ORDER BY YEAR ASC",
+      "gold_sql": "SELECT Theme FROM farm_competition ORDER BY YEAR",
+      "error_message": null,
+      "question": "What are the themes of farm competitions sorted by year in ascending order?",
+      "context": "CREATE TABLE farm_competition (Theme VARCHAR, YEAR VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT AVG(Working_Horses) FROM farm WHERE Total_Horses > 5000",
+      "gold_sql": "SELECT AVG(Working_Horses) FROM farm WHERE Total_Horses > 5000",
+      "error_message": null,
+      "question": "What is the average number of working horses of farms with more than 5000 total number of horses?",
+      "context": "CREATE TABLE farm (Working_Horses INTEGER, Total_Horses INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT MAX(Cows) AS Max_Cows, MIN(Cows) AS Min_Cows FROM farm",
+      "gold_sql": "SELECT MAX(Cows), MIN(Cows) FROM farm",
+      "error_message": null,
+      "question": "What are the maximum and minimum number of cows across all farms.",
+      "context": "CREATE TABLE farm (Cows INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(DISTINCT Status) FROM city",
+      "gold_sql": "SELECT COUNT(DISTINCT Status) FROM city",
+      "error_message": null,
+      "question": "How many different statuses do cities have?",
+      "context": "CREATE TABLE city (Status VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Official_Name FROM city ORDER BY Population DESC",
+      "gold_sql": "SELECT Official_Name FROM city ORDER BY Population DESC",
+      "error_message": null,
+      "question": "List official names of cities in descending order of population.",
+      "context": "CREATE TABLE city (Official_Name VARCHAR, Population VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Official_Name, Status FROM city ORDER BY Population DESC LIMIT 1",
+      "gold_sql": "SELECT Official_Name, Status FROM city ORDER BY Population DESC LIMIT 1",
+      "error_message": null,
+      "question": "List the official name and status of the city with the largest population.",
+      "context": "CREATE TABLE city (Official_Name VARCHAR, Status VARCHAR, Population VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT Official_Name",
+      "gold_sql": "SELECT Official_Name FROM city WHERE Population > 1500 OR Population < 500",
+      "error_message": "no such column: Official_Name",
+      "question": "Find the official names of cities with population bigger than 1500 or smaller than 500.",
+      "context": "CREATE TABLE city (Official_Name VARCHAR, Population VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Census_Ranking FROM city WHERE Status != 'Village'",
+      "gold_sql": "SELECT Census_Ranking FROM city WHERE Status <> \"Village\"",
+      "error_message": null,
+      "question": "Show the census ranking of cities whose status are not \"Village\".",
+      "context": "CREATE TABLE city (Census_Ranking VARCHAR, Status VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT DISTINCT student_id FROM student_course_attendance",
+      "gold_sql": "SELECT student_id FROM student_course_attendance",
+      "error_message": null,
+      "question": "List the id of students who attended some courses?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT candidate_id FROM candidate_assessments ORDER BY assessment_date DESC LIMIT 1",
+      "gold_sql": "SELECT candidate_id FROM candidate_assessments ORDER BY assessment_date DESC LIMIT 1",
+      "error_message": null,
+      "question": "Find id of the candidate who most recently accessed the course?",
+      "context": "CREATE TABLE candidate_assessments (candidate_id VARCHAR, assessment_date VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT candidate_id FROM candidate_assessments WHERE asessment_outcome_code = 'Pass'",
+      "gold_sql": "SELECT candidate_id FROM candidate_assessments WHERE asessment_outcome_code = \"Pass\"",
+      "error_message": null,
+      "question": "Find id of candidates whose assessment code is \"Pass\"?",
+      "context": "CREATE TABLE candidate_assessments (candidate_id VARCHAR, asessment_outcome_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id FROM student_course_attendance WHERE course_id = '301'",
+      "gold_sql": "SELECT student_id FROM student_course_attendance WHERE course_id = 301",
+      "error_message": null,
+      "question": "What are the id of students who registered course 301?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR, course_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id FROM student_course_attendance WHERE course_id = '301' ORDER BY date_of_attendance DESC LIMIT 1",
+      "gold_sql": "SELECT student_id FROM student_course_attendance WHERE course_id = 301 ORDER BY date_of_attendance DESC LIMIT 1",
+      "error_message": null,
+      "question": "What is the id of the student who most recently registered course 301?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR, course_id VARCHAR, date_of_attendance VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT course_name FROM courses ORDER BY course_name ASC",
+      "gold_sql": "SELECT course_name FROM courses ORDER BY course_name",
+      "error_message": null,
+      "question": "List the names of courses in alphabetical order?",
+      "context": "CREATE TABLE courses (course_name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT first_name FROM people ORDER BY first_name ASC",
+      "gold_sql": "SELECT first_name FROM people ORDER BY first_name",
+      "error_message": null,
+      "question": "List the first names of people in alphabetical order?",
+      "context": "CREATE TABLE people (first_name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT date FROM weather WHERE max_temperature_f > 85",
+      "gold_sql": "SELECT date FROM weather WHERE max_temperature_f > 85",
+      "error_message": null,
+      "question": "Give me the dates when the max temperature was higher than 85.",
+      "context": "CREATE TABLE weather (date VARCHAR, max_temperature_f INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT name FROM station WHERE lat < 37.5",
+      "gold_sql": "SELECT name FROM station WHERE lat < 37.5",
+      "error_message": null,
+      "question": "What are the names of stations that have latitude lower than 37.5?",
+      "context": "CREATE TABLE station (name VARCHAR, lat INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT start_station_name, end_station_name FROM trip ORDER BY id LIMIT 3",
+      "gold_sql": "SELECT start_station_name, end_station_name FROM trip ORDER BY id LIMIT 3",
+      "error_message": null,
+      "question": "Give me the start station and end station for the trips with the three oldest id.",
+      "context": "CREATE TABLE trip (start_station_name VARCHAR, end_station_name VARCHAR, id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT AVG(lat), AVG(long) FROM station WHERE city = 'San Jose'",
+      "gold_sql": "SELECT AVG(lat), AVG(long) FROM station WHERE city = \"San Jose\"",
+      "error_message": null,
+      "question": "What is the average latitude and longitude of stations located in San Jose city?",
+      "context": "CREATE TABLE station (lat INTEGER, long INTEGER, city VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id FROM trip ORDER BY duration ASC LIMIT 1",
+      "gold_sql": "SELECT id FROM trip ORDER BY duration LIMIT 1",
+      "error_message": null,
+      "question": "What is the id of the trip that has the shortest duration?",
+      "context": "CREATE TABLE trip (id VARCHAR, duration VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT SUM(duration) AS total_duration, MAX(duration) AS max_duration FROM trip WHERE bike_id = 636",
+      "gold_sql": "SELECT SUM(duration), MAX(duration) FROM trip WHERE bike_id = 636",
+      "error_message": null,
+      "question": "What is the total and maximum duration of trips with bike id 636?",
+      "context": "CREATE TABLE trip (duration INTEGER, bike_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(DISTINCT bike_id) FROM trip",
+      "gold_sql": "SELECT COUNT(DISTINCT bike_id) FROM trip",
+      "error_message": null,
+      "question": "From the trip record, find the number of unique bikes.",
+      "context": "CREATE TABLE trip (bike_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(DISTINCT city) FROM station",
+      "gold_sql": "SELECT COUNT(DISTINCT city) FROM station",
+      "error_message": null,
+      "question": "What is the number of distinct cities the stations are located at?",
+      "context": "CREATE TABLE station (city VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(*) FROM station WHERE city = 'Mountain View'",
+      "gold_sql": "SELECT COUNT(*) FROM station WHERE city = \"Mountain View\"",
+      "error_message": null,
+      "question": "How many stations does Mountain View city has?",
+      "context": "CREATE TABLE station (city VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(*) FROM weather WHERE mean_humidity > '50' AND mean_visibility_miles > '8'",
+      "gold_sql": "SELECT COUNT(*) FROM weather WHERE mean_humidity > 50 AND mean_visibility_miles > 8",
+      "error_message": null,
+      "question": "How many days had both mean humidity above 50 and mean visibility above 8?",
+      "context": "CREATE TABLE weather (mean_humidity VARCHAR, mean_visibility_miles VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT date, zip_code FROM weather WHERE max_temperature_f = '80';",
+      "gold_sql": "SELECT date, zip_code FROM weather WHERE max_temperature_f >= 80",
+      "error_message": null,
+      "question": "When and in what zip code did max temperature reach 80?",
+      "context": "CREATE TABLE weather (date VARCHAR, zip_code VARCHAR, max_temperature_f VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT date FROM weather WHERE zip_code = '94107' AND EVENTS NOT LIKE '%Fog%' AND EVENTS NOT LIKE '%Rain%'",
+      "gold_sql": "SELECT date FROM weather WHERE zip_code = 94107 AND EVENTS <> \"Fog\" AND EVENTS <> \"Rain\"",
+      "error_message": null,
+      "question": "In zip code 94107, on which day neither Fog nor Rain was not observed?",
+      "context": "CREATE TABLE weather (date VARCHAR, EVENTS VARCHAR, zip_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT name, lat, city FROM station ORDER BY lat ASC LIMIT 1",
+      "gold_sql": "SELECT name, lat, city FROM station ORDER BY lat LIMIT 1",
+      "error_message": null,
+      "question": "What are the name, latitude, and city of the station with the lowest latitude?",
+      "context": "CREATE TABLE station (name VARCHAR, lat VARCHAR, city VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT date, mean_temperature_f, mean_humidity",
+      "gold_sql": "SELECT date, mean_temperature_f, mean_humidity FROM weather ORDER BY max_gust_speed_mph DESC LIMIT 3",
+      "error_message": "no such column: date",
+      "question": "What are the date, mean temperature and mean humidity for the top 3 days with the largest max gust speeds?",
+      "context": "CREATE TABLE weather (date VARCHAR, mean_temperature_f VARCHAR, mean_humidity VARCHAR, max_gust_speed_mph VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT date, cloud_cover FROM weather ORDER BY cloud_cover DESC LIMIT 5",
+      "gold_sql": "SELECT date, cloud_cover FROM weather ORDER BY cloud_cover DESC LIMIT 5",
+      "error_message": null,
+      "question": "What are the dates that had the top 5 cloud cover rates? Also tell me the cloud cover rate.",
+      "context": "CREATE TABLE weather (date VARCHAR, cloud_cover VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id, duration FROM trip ORDER BY duration DESC LIMIT 3",
+      "gold_sql": "SELECT id, duration FROM trip ORDER BY duration DESC LIMIT 3",
+      "error_message": null,
+      "question": "What are the ids and durations of the trips with the top 3 durations?",
+      "context": "CREATE TABLE trip (id VARCHAR, duration VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT DISTINCT start_station_name FROM trip WHERE duration < 100",
+      "gold_sql": "SELECT DISTINCT start_station_name FROM trip WHERE duration < 100",
+      "error_message": null,
+      "question": "List all the distinct stations from which a trip of duration below 100 started.",
+      "context": "CREATE TABLE trip (start_station_name VARCHAR, duration INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT date FROM weather WHERE mean_sea_level_pressure_inches BETWEEN 30.3 AND 31",
+      "gold_sql": "SELECT date FROM weather WHERE mean_sea_level_pressure_inches BETWEEN 30.3 AND 31",
+      "error_message": null,
+      "question": "What are the dates in which the mean sea level pressure was between 30.3 and 31?",
+      "context": "CREATE TABLE weather (date VARCHAR, mean_sea_level_pressure_inches INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT date, CAST(max_temperature_f AS INT) - CAST(min_temperature_f AS INT) AS temperature_diff",
+      "gold_sql": "SELECT date, max_temperature_f - min_temperature_f FROM weather ORDER BY max_temperature_f - min_temperature_f LIMIT 1",
+      "error_message": "no such column: date",
+      "question": "Find the day in which the difference between the max temperature and min temperature was the smallest. Also report the difference.",
+      "context": "CREATE TABLE weather (date VARCHAR, max_temperature_f VARCHAR, min_temperature_f VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(Id) FROM book",
+      "gold_sql": "SELECT COUNT(*) FROM book",
+      "error_message": null,
+      "question": "How many books are there?",
+      "context": "CREATE TABLE book (Id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Writer FROM book ORDER BY Writer ASC",
+      "gold_sql": "SELECT Writer FROM book ORDER BY Writer",
+      "error_message": null,
+      "question": "List the writers of the books in ascending alphabetical order.",
+      "context": "CREATE TABLE book (Writer VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Title FROM book ORDER BY Issues ASC",
+      "gold_sql": "SELECT Title FROM book ORDER BY Issues",
+      "error_message": null,
+      "question": "List the titles of the books in ascending order of issues.",
+      "context": "CREATE TABLE book (Title VARCHAR, Issues VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Title FROM book WHERE Writer != \"Elaine Lee\"",
+      "gold_sql": "SELECT Title FROM book WHERE Writer <> \"Elaine Lee\"",
+      "error_message": null,
+      "question": "What are the titles of the books whose writer is not \"Elaine Lee\"?",
+      "context": "CREATE TABLE book (Title VARCHAR, Writer VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Title, Issues FROM book",
+      "gold_sql": "SELECT Title, Issues FROM book",
+      "error_message": null,
+      "question": "What are the title and issues of the books?",
+      "context": "CREATE TABLE book (Title VARCHAR, Issues VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT born_state FROM head GROUP BY born_state HAVING COUNT(born_state) >= 3",
+      "gold_sql": "SELECT born_state FROM head GROUP BY born_state HAVING COUNT(*) >= 3",
+      "error_message": null,
+      "question": "What are the names of the states where at least 3 heads were born?",
+      "context": "CREATE TABLE head (born_state VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT creation FROM department GROUP BY creation ORDER BY COUNT(creation) DESC LIMIT 1",
+      "gold_sql": "SELECT creation FROM department GROUP BY creation ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "In which year were most departments established?",
+      "context": "CREATE TABLE department (creation VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Status, AVG(Population) FROM city GROUP BY Status",
+      "gold_sql": "SELECT Status, AVG(Population) FROM city GROUP BY Status",
+      "error_message": null,
+      "question": "Please show the different statuses of cities and the average population of cities with each status.",
+      "context": "CREATE TABLE city (Status VARCHAR, Population INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT Status, COUNT(*) FROM city GROUP BY Status ORDER BY COUNT(*) DESC",
+      "gold_sql": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*)",
+      "error_message": null,
+      "question": "Please show the different statuses, ordered by the number of cities that have each.",
+      "context": "CREATE TABLE city (Status VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(Status) DESC LIMIT 1",
+      "gold_sql": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "List the most common type of Status across cities.",
+      "context": "CREATE TABLE city (Status VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id FROM student_course_registrations GROUP BY student_id ORDER BY COUNT(*) ASC LIMIT 1",
+      "gold_sql": "SELECT student_id FROM student_course_registrations GROUP BY student_id ORDER BY COUNT(*) LIMIT 1",
+      "error_message": null,
+      "question": "what is id of students who registered some courses but the least number of courses in these students?",
+      "context": "CREATE TABLE student_course_registrations (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT city, MAX(lat) FROM station GROUP BY city",
+      "gold_sql": "SELECT city, MAX(lat) FROM station GROUP BY city",
+      "error_message": null,
+      "question": "For each city, return the highest latitude among its stations.",
+      "context": "CREATE TABLE station (city VARCHAR, lat INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT zip_code, AVG(mean_temperature_f) FROM weather WHERE date LIKE '%08/%' GROUP BY zip_code",
+      "gold_sql": "SELECT zip_code, AVG(mean_temperature_f) FROM weather WHERE date LIKE \"8/%\" GROUP BY zip_code",
+      "error_message": null,
+      "question": "For each zip code, return the average mean temperature of August there.",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, mean_temperature_f INTEGER, date VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT start_station_name, start_station_id",
+      "gold_sql": "SELECT start_station_name, start_station_id FROM trip WHERE start_date LIKE \"8/%\" GROUP BY start_station_name ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": "no such column: start_station_name",
+      "question": "Which start station had the most trips starting from August? Give me the name and id of the station.",
+      "context": "CREATE TABLE trip (start_station_name VARCHAR, start_station_id VARCHAR, start_date VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT bike_id FROM trip WHERE zip_code = '94002' GROUP BY bike_id ORDER BY COUNT(bike_id) DESC LIMIT 1",
+      "gold_sql": "SELECT bike_id FROM trip WHERE zip_code = 94002 GROUP BY bike_id ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which bike traveled the most often in zip code 94002?",
+      "context": "CREATE TABLE trip (bike_id VARCHAR, zip_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT cloud_cover FROM weather WHERE zip_code = '94107' GROUP BY cloud_cover ORDER BY COUNT(*) DESC LIMIT 3",
+      "gold_sql": "SELECT cloud_cover FROM weather WHERE zip_code = 94107 GROUP BY cloud_cover ORDER BY COUNT(*) DESC LIMIT 3",
+      "error_message": null,
+      "question": "What is the 3 most common cloud cover rates in the region of zip code 94107?",
+      "context": "CREATE TABLE weather (cloud_cover VARCHAR, zip_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT zip_code FROM weather ORDER BY mean_sea_level_pressure_inches ASC LIMIT 1",
+      "gold_sql": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) LIMIT 1",
+      "error_message": null,
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, mean_sea_level_pressure_inches INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT COUNT(zip_code) FROM weather WHERE max_wind_Speed_mph = '25'",
+      "gold_sql": "SELECT zip_code, COUNT(*) FROM weather WHERE max_wind_Speed_mph >= 25 GROUP BY zip_code",
+      "error_message": null,
+      "question": "For each zip code, return how many times max wind speed reached 25?",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, max_wind_Speed_mph VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT city, COUNT(*) as number_of_stations FROM station GROUP BY city HAVING COUNT(*) >= 15",
+      "gold_sql": "SELECT city, COUNT(*) FROM station GROUP BY city HAVING COUNT(*) >= 15",
+      "error_message": null,
+      "question": "List the name and the number of stations for all the cities that have at least 15 stations.",
+      "context": "CREATE TABLE station (city VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT start_station_id, start_station_name",
+      "gold_sql": "SELECT start_station_id, start_station_name FROM trip GROUP BY start_station_name HAVING COUNT(*) >= 200",
+      "error_message": "no such column: start_station_id",
+      "question": "Find the ids and names of stations from which at least 200 trips started.",
+      "context": "CREATE TABLE trip (start_station_id VARCHAR, start_station_name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT zip_code FROM weather WHERE mean_visibility_miles < 10",
+      "gold_sql": "SELECT zip_code FROM weather GROUP BY zip_code HAVING AVG(mean_visibility_miles) < 10",
+      "error_message": null,
+      "question": "Find the zip code in which the average mean visibility is lower than 10.",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, mean_visibility_miles INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT city FROM station ORDER BY MAX(lat) DESC",
+      "gold_sql": "SELECT city FROM station GROUP BY city ORDER BY MAX(lat) DESC",
+      "error_message": "misuse of aggregate: MAX()",
+      "question": "List all the cities in a decreasing order of each city's stations' highest latitude.",
+      "context": "CREATE TABLE station (city VARCHAR, lat INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT Publisher",
+      "gold_sql": "SELECT Publisher FROM publication GROUP BY Publisher HAVING COUNT(*) > 1",
+      "error_message": "no such column: Publisher",
+      "question": "Show publishers that have more than one publication.",
+      "context": "CREATE TABLE publication (Publisher VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Publisher, COUNT(*) FROM publication GROUP BY Publisher",
+      "gold_sql": "SELECT Publisher, COUNT(*) FROM publication GROUP BY Publisher",
+      "error_message": null,
+      "question": "Show different publishers together with the number of publications they have.",
+      "context": "CREATE TABLE publication (Publisher VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Publication_Date FROM publication GROUP BY Publication_Date ORDER BY COUNT(*) DESC LIMIT 1",
+      "gold_sql": "SELECT Publication_Date FROM publication GROUP BY Publication_Date ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Please show the most common publication date.",
+      "context": "CREATE TABLE publication (Publication_Date VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Writer FROM book GROUP BY Writer HAVING COUNT(Writer) > 1",
+      "gold_sql": "SELECT Writer FROM book GROUP BY Writer HAVING COUNT(*) > 1",
+      "error_message": null,
+      "question": "List the writers who have written more than one book.",
+      "context": "CREATE TABLE book (Writer VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Nominee, COUNT(*) as Number_of_Musicals FROM musical GROUP BY Nominee",
+      "gold_sql": "SELECT Nominee, COUNT(*) FROM musical GROUP BY Nominee",
+      "error_message": null,
+      "question": "Show different nominees and the number of musicals they have been nominated.",
+      "context": "CREATE TABLE musical (Nominee VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(Nominee) DESC LIMIT 1",
+      "gold_sql": "SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Please show the nominee who has been nominated the greatest number of times.",
+      "context": "CREATE TABLE musical (Nominee VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1",
+      "gold_sql": "SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "List the most common result of the musicals.",
+      "context": "CREATE TABLE musical (RESULT VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(Nominee) > 2",
+      "gold_sql": "SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(*) > 2",
+      "error_message": null,
+      "question": "List the nominees that have been nominated more than two musicals.",
+      "context": "CREATE TABLE musical (Nominee VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT COUNT(f1) AS num_followers, f1 FROM follows GROUP BY f1",
+      "gold_sql": "SELECT COUNT(*) FROM follows GROUP BY f1",
+      "error_message": null,
+      "question": "Find the number of followers for each user.",
+      "context": "CREATE TABLE follows (f1 VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT attribute_data_type",
+      "gold_sql": "SELECT attribute_data_type FROM Attribute_Definitions GROUP BY attribute_data_type HAVING COUNT(*) > 3",
+      "error_message": "no such column: attribute_data_type",
+      "question": "Find the list of attribute data types possessed by more than 3 attribute definitions.",
+      "context": "CREATE TABLE Attribute_Definitions (attribute_data_type VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT catalog_publisher FROM catalogs GROUP BY catalog_publisher ORDER BY COUNT(catalog_publisher) DESC LIMIT 1",
+      "gold_sql": "SELECT catalog_publisher FROM catalogs GROUP BY catalog_publisher ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which catalog publisher has published the most catalogs?",
+      "context": "CREATE TABLE catalogs (catalog_publisher VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT date_of_latest_revision FROM Catalogs GROUP BY date_of_latest_revision HAVING COUNT(date_of_latest_revision) > 1",
+      "gold_sql": "SELECT date_of_latest_revision FROM Catalogs GROUP BY date_of_latest_revision HAVING COUNT(*) > 1",
+      "error_message": null,
+      "question": "Find the dates on which more than one revisions were made.",
+      "context": "CREATE TABLE Catalogs (date_of_latest_revision VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT origin, COUNT(*) FROM Flight GROUP BY origin",
+      "gold_sql": "SELECT origin, COUNT(*) FROM Flight GROUP BY origin",
+      "error_message": null,
+      "question": "Show all origins and the number of flights from each origin.",
+      "context": "CREATE TABLE Flight (origin VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT destination, COUNT(*) FROM Flight GROUP BY destination",
+      "gold_sql": "SELECT destination, COUNT(*) FROM Flight GROUP BY destination",
+      "error_message": null,
+      "question": "Show all destinations and the number of flights to each destination.",
+      "context": "CREATE TABLE Flight (destination VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT origin FROM Flight GROUP BY origin ORDER BY COUNT(*) DESC LIMIT 1",
+      "gold_sql": "SELECT origin FROM Flight GROUP BY origin ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which origin has most number of flights?",
+      "context": "CREATE TABLE Flight (origin VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT destination FROM Flight GROUP BY destination ORDER BY COUNT(*) ASC LIMIT 1",
+      "gold_sql": "SELECT destination FROM Flight GROUP BY destination ORDER BY COUNT(*) LIMIT 1",
+      "error_message": null,
+      "question": "Which destination has least number of flights?",
+      "context": "CREATE TABLE Flight (destination VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT allergytype, COUNT(*) FROM Allergy_type GROUP BY allergytype",
+      "gold_sql": "SELECT allergytype, COUNT(*) FROM Allergy_type GROUP BY allergytype",
+      "error_message": null,
+      "question": "Show all allergy types and the number of allergies in each type.",
+      "context": "CREATE TABLE Allergy_type (allergytype VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT allergytype FROM Allergy_type GROUP BY allergytype ORDER BY COUNT(*) DESC LIMIT 1",
+      "gold_sql": "SELECT allergytype FROM Allergy_type GROUP BY allergytype ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which allergy type has most number of allergies?",
+      "context": "CREATE TABLE Allergy_type (allergytype VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT allergytype FROM Allergy_type ORDER BY COUNT(*) ASC LIMIT 1",
+      "gold_sql": "SELECT allergytype FROM Allergy_type GROUP BY allergytype ORDER BY COUNT(*) LIMIT 1",
+      "error_message": "misuse of aggregate: COUNT()",
+      "question": "Which allergy type has least number of allergies?",
+      "context": "CREATE TABLE Allergy_type (allergytype VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT major, COUNT(*) FROM Student GROUP BY major",
+      "gold_sql": "SELECT major, COUNT(*) FROM Student GROUP BY major",
+      "error_message": null,
+      "question": "Show all majors and corresponding number of students.",
+      "context": "CREATE TABLE Student (major VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT major FROM Student GROUP BY major ORDER BY COUNT(major) DESC LIMIT 1",
+      "gold_sql": "SELECT major FROM Student GROUP BY major ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which major has most number of students?",
+      "context": "CREATE TABLE Student (major VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT age, COUNT(*) FROM Student GROUP BY age",
+      "gold_sql": "SELECT age, COUNT(*) FROM Student GROUP BY age",
+      "error_message": null,
+      "question": "Show all ages and corresponding number of students.",
+      "context": "CREATE TABLE Student (age VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT AVG(age) FROM Student WHERE sex = 'male' UNION SELECT AVG(age) FROM Student WHERE sex = 'female'",
+      "gold_sql": "SELECT AVG(age), sex FROM Student GROUP BY sex",
+      "error_message": null,
+      "question": "Show the average age for male and female students.",
+      "context": "CREATE TABLE Student (sex VARCHAR, age INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT city_code, COUNT(*) FROM Student GROUP BY city_code",
+      "gold_sql": "SELECT city_code, COUNT(*) FROM Student GROUP BY city_code",
+      "error_message": null,
+      "question": "Show all cities and corresponding number of students.",
+      "context": "CREATE TABLE Student (city_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT advisor, COUNT(*) FROM Student GROUP BY advisor",
+      "gold_sql": "SELECT advisor, COUNT(*) FROM Student GROUP BY advisor",
+      "error_message": null,
+      "question": "Show all advisors and corresponding number of students.",
+      "context": "CREATE TABLE Student (advisor VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT advisor, COUNT(*) as num_students FROM Student GROUP BY advisor ORDER BY num_students DESC LIMIT 1",
+      "gold_sql": "SELECT advisor FROM Student GROUP BY advisor ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which advisor has most number of students?",
+      "context": "CREATE TABLE Student (advisor VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT StuID FROM Has_allergy GROUP BY StuID HAVING COUNT(StuID) >= 2",
+      "gold_sql": "SELECT StuID FROM Has_allergy GROUP BY StuID HAVING COUNT(*) >= 2",
+      "error_message": null,
+      "question": "Show all student IDs who have at least two allergies.",
+      "context": "CREATE TABLE Has_allergy (StuID VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT Allergy, COUNT(*) as count FROM Has_allergy GROUP BY Allergy ORDER BY count DESC LIMIT 1",
+      "gold_sql": "SELECT Allergy FROM Has_allergy GROUP BY Allergy ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which allergy has most number of students affected?",
+      "context": "CREATE TABLE Has_allergy (Allergy VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Allergy, COUNT(*) as Number_of_students FROM Has_allergy GROUP BY Allergy",
+      "gold_sql": "SELECT Allergy, COUNT(*) FROM Has_allergy GROUP BY Allergy",
+      "error_message": null,
+      "question": "Show all allergies with number of students affected.",
+      "context": "CREATE TABLE Has_allergy (Allergy VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT billing_country, COUNT(*) as num_invoices",
+      "gold_sql": "SELECT billing_country, COUNT(*) FROM invoices GROUP BY billing_country ORDER BY COUNT(*) DESC LIMIT 5",
+      "error_message": "no such column: billing_country",
+      "question": "A list of the top 5 countries by number of invoices. List country name and number of invoices.",
+      "context": "CREATE TABLE invoices (billing_country VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT billing_country, SUM(total) AS gross_invoice_size FROM invoices GROUP BY billing_country ORDER BY gross_invoice_size DESC LIMIT 8",
+      "gold_sql": "SELECT billing_country, SUM(total) FROM invoices GROUP BY billing_country ORDER BY SUM(total) DESC LIMIT 8",
+      "error_message": null,
+      "question": "A list of the top 8 countries by gross/total invoice size. List country name and gross invoice size.",
+      "context": "CREATE TABLE invoices (billing_country VARCHAR, total INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT billing_country, AVG(total) AS average_invoice_size FROM invoices GROUP BY billing_country ORDER BY average_invoice_size DESC LIMIT 10",
+      "gold_sql": "SELECT billing_country, AVG(total) FROM invoices GROUP BY billing_country ORDER BY AVG(total) DESC LIMIT 10",
+      "error_message": null,
+      "question": "A list of the top 10 countries by average invoice size. List country name and average invoice size.",
+      "context": "CREATE TABLE invoices (billing_country VARCHAR, total INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT billing_state, COUNT(*) FROM invoices WHERE billing_country = 'US' GROUP BY billing_state",
+      "gold_sql": "SELECT billing_state, COUNT(*) FROM invoices WHERE billing_country = \"USA\" GROUP BY billing_state",
+      "error_message": null,
+      "question": "List the number of invoices from the US, grouped by state.",
+      "context": "CREATE TABLE invoices (billing_state VARCHAR, billing_country VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT DISTINCT T1.creation",
+      "gold_sql": "SELECT DISTINCT T1.creation FROM department AS T1 JOIN management AS T2 ON T1.department_id = T2.department_id JOIN head AS T3 ON T2.head_id = T3.head_id WHERE T3.born_state = 'Alabama'",
+      "error_message": "no such column: T1.creation",
+      "question": "What are the distinct creation years of the departments managed by a secretary born in state 'Alabama'?",
+      "context": "CREATE TABLE department (creation VARCHAR, department_id VARCHAR); CREATE TABLE management (department_id VARCHAR, head_id VARCHAR); CREATE TABLE head (head_id VARCHAR, born_state VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT d.name, d.num_employees",
+      "gold_sql": "SELECT T1.name, T1.num_employees FROM department AS T1 JOIN management AS T2 ON T1.department_id = T2.department_id WHERE T2.temporary_acting = 'Yes'",
+      "error_message": "no such column: d.name",
+      "question": "Show the name and number of employees for the departments managed by heads whose temporary acting value is 'Yes'?",
+      "context": "CREATE TABLE management (department_id VARCHAR, temporary_acting VARCHAR); CREATE TABLE department (name VARCHAR, num_employees VARCHAR, department_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(d.department_id) FROM department d LEFT JOIN management m ON d.department_id = m.department_id WHERE m.department_id IS NULL",
+      "gold_sql": "SELECT COUNT(*) FROM department WHERE NOT department_id IN (SELECT department_id FROM management)",
+      "error_message": null,
+      "question": "How many departments are led by heads who are not mentioned?",
+      "context": "CREATE TABLE management (department_id VARCHAR); CREATE TABLE department (department_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT DISTINCT T1.age FROM head AS T1 INNER JOIN management AS T2 ON T1.head_id = T2.head_id WHERE T2.temporary_acting = 'acting'",
+      "gold_sql": "SELECT DISTINCT T1.age FROM management AS T2 JOIN head AS T1 ON T1.head_id = T2.head_id WHERE T2.temporary_acting = 'Yes'",
+      "error_message": null,
+      "question": "What are the distinct ages of the heads who are acting?",
+      "context": "CREATE TABLE head (age VARCHAR, head_id VARCHAR); CREATE TABLE management (head_id VARCHAR, temporary_acting VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT t1.born_state",
+      "gold_sql": "SELECT T3.born_state FROM department AS T1 JOIN management AS T2 ON T1.department_id = T2.department_id JOIN head AS T3 ON T2.head_id = T3.head_id WHERE T1.name = 'Treasury' INTERSECT SELECT T3.born_state FROM department AS T1 JOIN management AS T2 ON T1.department_id = T2.department_id JOIN head AS T3 ON T2.head_id = T3.head_id WHERE T1.name = 'Homeland Security'",
+      "error_message": "no such column: t1.born_state",
+      "question": "List the states where both the secretary of 'Treasury' department and the secretary of 'Homeland Security' were born.",
+      "context": "CREATE TABLE management (department_id VARCHAR, head_id VARCHAR); CREATE TABLE head (born_state VARCHAR, head_id VARCHAR); CREATE TABLE department (department_id VARCHAR, name VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT department_id, name, COUNT(*) as num_heads",
+      "gold_sql": "SELECT T1.department_id, T1.name, COUNT(*) FROM management AS T2 JOIN department AS T1 ON T1.department_id = T2.department_id GROUP BY T1.department_id HAVING COUNT(*) > 1",
+      "error_message": "no such column: department_id",
+      "question": "Which department has more than 1 head at a time? List the id, name and the number of heads.",
+      "context": "CREATE TABLE management (department_id VARCHAR); CREATE TABLE department (department_id VARCHAR, name VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT T2.Year, T1.Official_Name",
+      "gold_sql": "SELECT T2.Year, T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID = T2.Host_city_ID",
+      "error_message": "no such column: T2.Year",
+      "question": "Show the years and the official names of the host cities of competitions.",
+      "context": "CREATE TABLE city (Official_Name VARCHAR, City_ID VARCHAR); CREATE TABLE farm_competition (Year VARCHAR, Host_city_ID VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT c.Official_Name",
+      "gold_sql": "SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID = T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*) > 1",
+      "error_message": "no such column: c.Official_Name",
+      "question": "Show the official names of the cities that have hosted more than one competition.",
+      "context": "CREATE TABLE farm_competition (Host_city_ID VARCHAR); CREATE TABLE city (Official_Name VARCHAR, City_ID VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT T1.Status",
+      "gold_sql": "SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID = T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": "no such column: T1.Status",
+      "question": "Show the status of the city that has hosted the greatest number of competitions.",
+      "context": "CREATE TABLE city (Status VARCHAR, City_ID VARCHAR); CREATE TABLE farm_competition (Host_city_ID VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT T2.Theme",
+      "gold_sql": "SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID = T2.Host_city_ID WHERE T1.Population > 1000",
+      "error_message": "no such column: T2.Theme",
+      "question": "Please show the themes of competitions with host cities having populations larger than 1000.",
+      "context": "CREATE TABLE city (City_ID VARCHAR, Population INTEGER); CREATE TABLE farm_competition (Theme VARCHAR, Host_city_ID VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Official_Name FROM city WHERE City_ID NOT IN (SELECT City_ID FROM farm_competition);",
+      "gold_sql": "SELECT Official_Name FROM city WHERE NOT City_ID IN (SELECT Host_city_ID FROM farm_competition)",
+      "error_message": null,
+      "question": "List the official names of cities that have not held any competition.",
+      "context": "CREATE TABLE farm_competition (Official_Name VARCHAR, City_ID VARCHAR, Host_city_ID VARCHAR); CREATE TABLE city (Official_Name VARCHAR, City_ID VARCHAR, Host_city_ID VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT Status FROM city WHERE Population > 1500 AND Population < 500",
+      "gold_sql": "SELECT Status FROM city WHERE Population > 1500 INTERSECT SELECT Status FROM city WHERE Population < 500",
+      "error_message": null,
+      "question": "Show the status shared by cities with population bigger than 1500 and smaller than 500.",
+      "context": "CREATE TABLE city (Status VARCHAR, Population INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT course_name FROM courses WHERE course_id = ( SELECT course_id FROM student_course_registrations GROUP BY course_id ORDER BY COUNT(course_id) DESC LIMIT 1 );",
+      "gold_sql": "SELECT T1.course_name FROM courses AS T1 JOIN student_course_registrations AS T2 ON T1.course_id = T2.course_Id GROUP BY T1.course_id ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "which course has most number of registered students?",
+      "context": "CREATE TABLE courses (course_name VARCHAR, course_id VARCHAR); CREATE TABLE student_course_registrations (course_Id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT p.first_name, p.last_name FROM people p JOIN candidates c ON p.person_id = c.candidate_id",
+      "gold_sql": "SELECT T2.first_name, T2.last_name FROM candidates AS T1 JOIN people AS T2 ON T1.candidate_id = T2.person_id",
+      "error_message": null,
+      "question": "what are the first name and last name of all candidates?",
+      "context": "CREATE TABLE candidates (candidate_id VARCHAR); CREATE TABLE people (first_name VARCHAR, last_name VARCHAR, person_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id FROM students WHERE student_id NOT IN (SELECT student_id FROM student_course_attendance)",
+      "gold_sql": "SELECT student_id FROM students WHERE NOT student_id IN (SELECT student_id FROM student_course_attendance)",
+      "error_message": null,
+      "question": "List the id of students who never attends courses?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR); CREATE TABLE students (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT scr.student_id, c.course_name FROM student_course_registrations scr JOIN courses c ON scr.course_id = c.course_id",
+      "gold_sql": "SELECT T1.student_id, T2.course_name FROM student_course_registrations AS T1 JOIN courses AS T2 ON T1.course_id = T2.course_id",
+      "error_message": null,
+      "question": "What are the ids of all students for courses and what are the names of those courses?",
+      "context": "CREATE TABLE courses (course_name VARCHAR, course_id VARCHAR); CREATE TABLE student_course_registrations (student_id VARCHAR, course_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_details FROM students WHERE student_id = (SELECT student_id FROM student_course_registrations ORDER BY registration_date DESC LIMIT 1)",
+      "gold_sql": "SELECT T2.student_details FROM student_course_registrations AS T1 JOIN students AS T2 ON T1.student_id = T2.student_id ORDER BY T1.registration_date DESC LIMIT 1",
+      "error_message": null,
+      "question": "What is detail of the student who most recently registered course?",
+      "context": "CREATE TABLE student_course_registrations (student_id VARCHAR, registration_date VARCHAR); CREATE TABLE students (student_details VARCHAR, student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(DISTINCT s.course_id) FROM student_course_attendance s JOIN courses c ON s.course_id = c.course_id WHERE c.course_name = 'English'",
+      "gold_sql": "SELECT COUNT(*) FROM courses AS T1 JOIN student_course_attendance AS T2 ON T1.course_id = T2.course_id WHERE T1.course_name = \"English\"",
+      "error_message": null,
+      "question": "How many students attend course English?",
+      "context": "CREATE TABLE student_course_attendance (course_id VARCHAR); CREATE TABLE courses (course_id VARCHAR, course_name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT COUNT(DISTINCT course_id) FROM student_course_attendance WHERE student_id = '171'",
+      "gold_sql": "SELECT COUNT(*) FROM courses AS T1 JOIN student_course_attendance AS T2 ON T1.course_id = T2.course_id WHERE T2.student_id = 171",
+      "error_message": null,
+      "question": "How many courses do the student whose id is 171 attend?",
+      "context": "CREATE TABLE courses (course_id VARCHAR); CREATE TABLE student_course_attendance (course_id VARCHAR, student_id VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT candidate_id FROM people WHERE email_address = 'stanley.monahan@example.org'",
+      "gold_sql": "SELECT T2.candidate_id FROM people AS T1 JOIN candidates AS T2 ON T1.person_id = T2.candidate_id WHERE T1.email_address = \"stanley.monahan@example.org\"",
+      "error_message": "no such column: candidate_id",
+      "question": "Find id of the candidate whose email is stanley.monahan@example.org?",
+      "context": "CREATE TABLE candidates (candidate_id VARCHAR); CREATE TABLE people (person_id VARCHAR, email_address VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_details FROM students WHERE student_id = ( SELECT student_id FROM student_course_registrations GROUP BY student_id ORDER BY COUNT(*) DESC LIMIT 1 );",
+      "gold_sql": "SELECT T1.student_details FROM students AS T1 JOIN student_course_registrations AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id ORDER BY COUNT(*) DESC LIMIT 1",
+      "error_message": null,
+      "question": "What is detail of the student who registered the most number of courses?",
+      "context": "CREATE TABLE students (student_details VARCHAR, student_id VARCHAR); CREATE TABLE student_course_registrations (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id, COUNT(*) FROM student_course_registrations GROUP BY student_id",
+      "gold_sql": "SELECT T1.student_id, COUNT(*) FROM students AS T1 JOIN student_course_registrations AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id",
+      "error_message": null,
+      "question": "List the id of students who registered some courses and the number of their registered courses?",
+      "context": "CREATE TABLE students (student_id VARCHAR); CREATE TABLE student_course_registrations (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT T1.course_name, COUNT(T2.student_id) FROM courses AS T1 INNER JOIN student_course_registrations AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id",
+      "gold_sql": "SELECT T3.course_name, COUNT(*) FROM students AS T1 JOIN student_course_registrations AS T2 ON T1.student_id = T2.student_id JOIN courses AS T3 ON T2.course_id = T3.course_id GROUP BY T2.course_id",
+      "error_message": null,
+      "question": "How many registed students do each course have? List course name and the number of their registered students?",
+      "context": "CREATE TABLE students (student_id VARCHAR); CREATE TABLE courses (course_name VARCHAR, course_id VARCHAR); CREATE TABLE student_course_registrations (course_id VARCHAR, student_id VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT p.cell_mobile_number",
+      "gold_sql": "SELECT T3.cell_mobile_number FROM candidates AS T1 JOIN candidate_assessments AS T2 ON T1.candidate_id = T2.candidate_id JOIN people AS T3 ON T1.candidate_id = T3.person_id WHERE T2.asessment_outcome_code = \"Fail\"",
+      "error_message": "no such column: p.cell_mobile_number",
+      "question": "Find the cell mobile number of the candidates whose assessment code is \"Fail\"?",
+      "context": "CREATE TABLE candidates (candidate_id VARCHAR); CREATE TABLE people (cell_mobile_number VARCHAR, person_id VARCHAR); CREATE TABLE candidate_assessments (candidate_id VARCHAR, asessment_outcome_code VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT DISTINCT city FROM addresses WHERE address_id IN (SELECT address_id FROM people_addresses)",
+      "gold_sql": "SELECT DISTINCT T1.city FROM addresses AS T1 JOIN people_addresses AS T2 ON T1.address_id = T2.address_id",
+      "error_message": null,
+      "question": "Find distinct cities of addresses of people?",
+      "context": "CREATE TABLE addresses (city VARCHAR, address_id VARCHAR); CREATE TABLE people_addresses (address_id VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT DISTINCT a.city",
+      "gold_sql": "SELECT DISTINCT T1.city FROM addresses AS T1 JOIN people_addresses AS T2 ON T1.address_id = T2.address_id JOIN students AS T3 ON T2.person_id = T3.student_id",
+      "error_message": "no such column: a.city",
+      "question": "Find distinct cities of address of students?",
+      "context": "CREATE TABLE students (student_id VARCHAR); CREATE TABLE addresses (city VARCHAR, address_id VARCHAR); CREATE TABLE people_addresses (address_id VARCHAR, person_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT DISTINCT student_id FROM student_course_registrations UNION SELECT student_id FROM student_course_attendance",
+      "gold_sql": "SELECT student_id FROM student_course_registrations UNION SELECT student_id FROM student_course_attendance",
+      "error_message": null,
+      "question": "What are the id of students who registered courses or attended courses?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR); CREATE TABLE student_course_registrations (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT course_id FROM student_course_registrations",
+      "gold_sql": "SELECT course_id FROM student_course_registrations WHERE student_id = 121 UNION SELECT course_id FROM student_course_attendance WHERE student_id = 121",
+      "error_message": null,
+      "question": "Find the id of courses which are registered or attended by student whose id is 121?",
+      "context": "CREATE TABLE student_course_attendance (course_id VARCHAR, student_id VARCHAR); CREATE TABLE student_course_registrations (course_id VARCHAR, student_id VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT s.*",
+      "gold_sql": "SELECT * FROM student_course_registrations WHERE NOT student_id IN (SELECT student_id FROM student_course_attendance)",
+      "error_message": "no such table: s",
+      "question": "What are all info of students who registered courses but not attended courses?",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR); CREATE TABLE student_course_registrations (student_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT student_id FROM student_course_registrations ORDER BY registration_date",
+      "gold_sql": "SELECT T2.student_id FROM courses AS T1 JOIN student_course_registrations AS T2 ON T1.course_id = T2.course_id WHERE T1.course_name = \"statistics\" ORDER BY T2.registration_date",
+      "error_message": null,
+      "question": "List the id of students who registered course statistics in the order of registration date.",
+      "context": "CREATE TABLE student_course_registrations (student_id VARCHAR, course_id VARCHAR, registration_date VARCHAR); CREATE TABLE courses (course_id VARCHAR, course_name VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT student_id FROM student_course_attendance WHERE course_id IN (SELECT course_id FROM courses WHERE course_name = 'Statistics') ORDER BY date_of_attendance",
+      "gold_sql": "SELECT T2.student_id FROM courses AS T1 JOIN student_course_attendance AS T2 ON T1.course_id = T2.course_id WHERE T1.course_name = \"statistics\" ORDER BY T2.date_of_attendance",
+      "error_message": null,
+      "question": "List the id of students who attended  statistics courses in the order of attendance date.",
+      "context": "CREATE TABLE student_course_attendance (student_id VARCHAR, course_id VARCHAR, date_of_attendance VARCHAR); CREATE TABLE courses (course_id VARCHAR, course_name VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT DISTINCT s.name",
+      "gold_sql": "SELECT DISTINCT T1.name FROM station AS T1 JOIN status AS T2 ON T1.id = T2.station_id WHERE T2.bikes_available = 7",
+      "error_message": "no such column: s.name",
+      "question": "Return the unique name for stations that have ever had 7 bikes available.",
+      "context": "CREATE TABLE station (name VARCHAR, id VARCHAR); CREATE TABLE status (station_id VARCHAR, bikes_available VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT s.lat, s.long, s.city",
+      "gold_sql": "SELECT T1.lat, T1.long, T1.city FROM station AS T1 JOIN trip AS T2 ON T1.id = T2.start_station_id ORDER BY T2.duration LIMIT 1",
+      "error_message": "no such column: s.lat",
+      "question": "What is the latitude, longitude, city of the station from which the shortest trip started?",
+      "context": "CREATE TABLE trip (start_station_id VARCHAR, duration VARCHAR); CREATE TABLE station (lat VARCHAR, long VARCHAR, city VARCHAR, id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id FROM station WHERE city = 'San Francisco' GROUP BY id HAVING AVG(bikes_available) > 10",
+      "gold_sql": "SELECT id FROM station WHERE city = \"San Francisco\" INTERSECT SELECT station_id FROM status GROUP BY station_id HAVING AVG(bikes_available) > 10",
+      "error_message": null,
+      "question": "What are the ids of stations that are located in San Francisco and have average bike availability above 10.",
+      "context": "CREATE TABLE status (id VARCHAR, station_id VARCHAR, city VARCHAR, bikes_available INTEGER); CREATE TABLE station (id VARCHAR, station_id VARCHAR, city VARCHAR, bikes_available INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT s.name, s.id",
+      "gold_sql": "SELECT T1.name, T1.id FROM station AS T1 JOIN status AS T2 ON T1.id = T2.station_id GROUP BY T2.station_id HAVING AVG(T2.bikes_available) > 14 UNION SELECT name, id FROM station WHERE installation_date LIKE \"12/%\"",
+      "error_message": "no such column: s.name",
+      "question": "What are the names and ids of stations that had more than 14 bikes available on average or were installed in December?",
+      "context": "CREATE TABLE station (name VARCHAR, id VARCHAR); CREATE TABLE station (name VARCHAR, id VARCHAR, installation_date VARCHAR); CREATE TABLE status (station_id VARCHAR, bikes_available INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT AVG(bikes_available) FROM station WHERE city != 'Palo Alto'",
+      "gold_sql": "SELECT AVG(bikes_available) FROM status WHERE NOT station_id IN (SELECT id FROM station WHERE city = \"Palo Alto\")",
+      "error_message": null,
+      "question": "What is the average bike availability in stations that are not located in Palo Alto?",
+      "context": "CREATE TABLE status (bikes_available INTEGER, station_id VARCHAR, id VARCHAR, city VARCHAR); CREATE TABLE station (bikes_available INTEGER, station_id VARCHAR, id VARCHAR, city VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT AVG(long) FROM station WHERE bikes_available <= 10",
+      "gold_sql": "SELECT AVG(long) FROM station WHERE NOT id IN (SELECT station_id FROM status GROUP BY station_id HAVING MAX(bikes_available) > 10)",
+      "error_message": null,
+      "question": "What is the average longitude of stations that never had bike availability more than 10?",
+      "context": "CREATE TABLE station (long INTEGER, id VARCHAR, station_id VARCHAR, bikes_available INTEGER); CREATE TABLE status (long INTEGER, id VARCHAR, station_id VARCHAR, bikes_available INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id FROM trip WHERE zip_code IN (SELECT zip_code FROM weather WHERE mean_temperature_f > 60)",
+      "gold_sql": "SELECT T1.id FROM trip AS T1 JOIN weather AS T2 ON T1.zip_code = T2.zip_code GROUP BY T2.zip_code HAVING AVG(T2.mean_temperature_f) > 60",
+      "error_message": null,
+      "question": "Give me ids for all the trip that took place in a zip code area with average mean temperature above 60.",
+      "context": "CREATE TABLE trip (id VARCHAR, zip_code VARCHAR); CREATE TABLE weather (zip_code VARCHAR, mean_temperature_f INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT date, zip_code",
+      "gold_sql": "SELECT date, zip_code FROM weather WHERE min_dew_point_f < (SELECT MIN(min_dew_point_f) FROM weather WHERE zip_code = 94107)",
+      "error_message": "no such column: date",
+      "question": "On which day and in which zip code was the min dew point lower than any day in zip code 94107?",
+      "context": "CREATE TABLE weather (date VARCHAR, zip_code VARCHAR, min_dew_point_f INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT T2.installation_date",
+      "gold_sql": "SELECT T1.id, T2.installation_date FROM trip AS T1 JOIN station AS T2 ON T1.end_station_id = T2.id",
+      "error_message": "no such column: T2.installation_date",
+      "question": "For each trip, return its ending station's installation date.",
+      "context": "CREATE TABLE station (installation_date VARCHAR, id VARCHAR); CREATE TABLE trip (id VARCHAR, end_station_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT t.id FROM trip t JOIN station s ON t.start_station_id = s.id ORDER BY s.dock_count DESC LIMIT 1",
+      "gold_sql": "SELECT T1.id FROM trip AS T1 JOIN station AS T2 ON T1.start_station_id = T2.id ORDER BY T2.dock_count DESC LIMIT 1",
+      "error_message": null,
+      "question": "Which trip started from the station with the largest dock count? Give me the trip id.",
+      "context": "CREATE TABLE trip (id VARCHAR, start_station_id VARCHAR); CREATE TABLE station (id VARCHAR, dock_count VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT COUNT(end_station_id)",
+      "gold_sql": "SELECT COUNT(*) FROM trip AS T1 JOIN station AS T2 ON T1.end_station_id = T2.id WHERE T2.city <> \"San Francisco\"",
+      "error_message": "no such column: end_station_id",
+      "question": "Count the number of trips that did not end in San Francisco city.",
+      "context": "CREATE TABLE trip (end_station_id VARCHAR); CREATE TABLE station (id VARCHAR, city VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id FROM station WHERE lat > 37.4 AND bikes_available >= 7",
+      "gold_sql": "SELECT id FROM station WHERE lat > 37.4 EXCEPT SELECT station_id FROM status GROUP BY station_id HAVING MIN(bikes_available) < 7",
+      "error_message": null,
+      "question": "What are the ids of stations that have latitude above 37.4 and never had bike availability below 7?",
+      "context": "CREATE TABLE status (id VARCHAR, station_id VARCHAR, lat INTEGER, bikes_available INTEGER); CREATE TABLE station (id VARCHAR, station_id VARCHAR, lat INTEGER, bikes_available INTEGER)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT name FROM station WHERE id IN (SELECT station_id FROM status WHERE station_id IN (SELECT id FROM station WHERE city != 'San Jose' AND id IN (SELECT station_id FROM station WHERE bikes_available > 10)))",
+      "gold_sql": "SELECT T1.name FROM station AS T1 JOIN status AS T2 ON T1.id = T2.station_id GROUP BY T2.station_id HAVING AVG(bikes_available) > 10 EXCEPT SELECT name FROM station WHERE city = \"San Jose\"",
+      "error_message": "no such column: city",
+      "question": "What are names of stations that have average bike availability above 10 and are not located in San Jose city?",
+      "context": "CREATE TABLE station (name VARCHAR, id VARCHAR); CREATE TABLE status (station_id VARCHAR); CREATE TABLE station (name VARCHAR, city VARCHAR, bikes_available INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT T1.long, AVG(T2.duration) FROM station AS T1 INNER JOIN trip AS T2 ON T1.id = T2.start_station_id GROUP BY T1.id",
+      "gold_sql": "SELECT T1.name, T1.long, AVG(T2.duration) FROM station AS T1 JOIN trip AS T2 ON T1.id = T2.start_station_id GROUP BY T2.start_station_id",
+      "error_message": null,
+      "question": "For each station, return its longitude and the average duration of trips that started from the station.",
+      "context": "CREATE TABLE station (name VARCHAR, long VARCHAR, id VARCHAR); CREATE TABLE trip (duration INTEGER, start_station_id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT T2.lat, MIN(T1.duration) FROM trip AS T1 INNER JOIN station AS T2 ON T1.end_station_id = T2.id GROUP BY T2.id",
+      "gold_sql": "SELECT T1.name, T1.lat, MIN(T2.duration) FROM station AS T1 JOIN trip AS T2 ON T1.id = T2.end_station_id GROUP BY T2.end_station_id",
+      "error_message": null,
+      "question": "For each station, find its latitude and the minimum duration of trips that ended at the station.",
+      "context": "CREATE TABLE trip (duration INTEGER, end_station_id VARCHAR); CREATE TABLE station (name VARCHAR, lat VARCHAR, id VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": false,
+      "generated_sql": "SELECT zip_code FROM weather WHERE max_dew_point_f != '70'",
+      "gold_sql": "SELECT DISTINCT zip_code FROM weather EXCEPT SELECT DISTINCT zip_code FROM weather WHERE max_dew_point_f >= 70",
+      "error_message": null,
+      "question": "Find all the zip codes in which the max dew point have never reached 70.",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, max_dew_point_f VARCHAR)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT id FROM trip WHERE duration >= (SELECT AVG(duration) FROM trip WHERE zip_code = '94103')",
+      "gold_sql": "SELECT id FROM trip WHERE duration >= (SELECT AVG(duration) FROM trip WHERE zip_code = 94103)",
+      "error_message": null,
+      "question": "Find the id for the trips that lasted at least as long as the average duration of trips in zip code 94103.",
+      "context": "CREATE TABLE trip (id VARCHAR, duration INTEGER, zip_code VARCHAR)"
+    },
+    {
+      "executable": false,
+      "correct": false,
+      "generated_sql": "SELECT s.id, s.name",
+      "gold_sql": "SELECT DISTINCT T1.id, T1.name FROM station AS T1 JOIN status AS T2 ON T1.id = T2.station_id WHERE T2.bikes_available > 12",
+      "error_message": "no such column: s.id",
+      "question": "What are the id and name of the stations that have ever had more than 12 bikes available?",
+      "context": "CREATE TABLE station (id VARCHAR, name VARCHAR); CREATE TABLE status (station_id VARCHAR, bikes_available INTEGER)"
+    },
+    {
+      "executable": true,
+      "correct": true,
+      "generated_sql": "SELECT zip_code FROM trip GROUP BY zip_code HAVING AVG(mean_humidity) < 70 AND COUNT(zip_code) >= 100",
+      "gold_sql": "SELECT zip_code FROM weather GROUP BY zip_code HAVING AVG(mean_humidity) < 70 INTERSECT SELECT zip_code FROM trip GROUP BY zip_code HAVING COUNT(*) >= 100",
+      "error_message": null,
+      "question": "Give me the zip code where the average mean humidity is below 70 and at least 100 trips took place.",
+      "context": "CREATE TABLE weather (zip_code VARCHAR, mean_humidity INTEGER); CREATE TABLE trip (zip_code VARCHAR, mean_humidity INTEGER)"
+    }
+  ]
+}
