@@ -1,0 +1,24 @@
+# =============================================================================
+# SQL-LoRA — Python Dependencies
+# =============================================================================
+#
+# Training dependencies (unsloth, torch, trl, peft, bitsandbytes, xformers)
+# are installed inside the Colab notebook via !pip, NOT listed here.
+# They require GPU-specific wheels (CUDA 12.1+) and the Colab runtime
+# provides the correct environment. Listing them here would cause
+# installation failures on CPU-only machines.
+#
+# Only dataset-loading, evaluation, and utility packages go here.
+# =============================================================================
+
+datasets>=2.14.0
+pandas>=2.0.0
+tqdm>=4.65.0
+huggingface_hub>=0.20.0
+
+# stdlib packages used (no install needed):
+#   sqlite3   — SQL execution & evaluation
+#   json      — result serialization
+#   csv       — results export
+#   pathlib   — path handling
+#   argparse  — CLI argument parsing
